@@ -1,0 +1,53 @@
+{
+    "Stations": [
+        {
+            "name": "Versova",
+            "id": 1
+        },
+        {
+            "name": "DN Nagar",
+            "id": 2
+        },
+        {
+            "name": "Azad Nagar",
+            "id": 3
+        },
+        {
+            "name": "Andheri",
+            "id": 4
+        },
+        {
+            "name": "WEH",
+            "id": 5
+        }
+    ],
+    "Tickets": [
+        {
+            "id": "TKT-9876",
+            "timestamp": "2024-02-15 17:47:13.801534",
+            "from_station": 1,
+            "to_station": 5,
+            "ticket_cost": 30,
+            "QR_Code": "TKT-9876.png",
+            "status": "N"
+        },
+        {
+            "id": "TKT-6827",
+            "timestamp": "2024-02-15 17:49:49.219642",
+            "from_station": 4,
+            "to_station": 2,
+            "ticket_cost": 10,
+            "QR_Code": "TKT-6827.png",
+            "status": "N"
+        },
+        {
+            "id": "TKT-7173",
+            "timestamp": "2024-02-15 17:55:55.191786",
+            "from_station": 2,
+            "to_station": 4,
+            "ticket_cost": 10,
+            "QR_Code": "TKT-7173.png",
+            "status": "N"
+        }
+    ]
+}
