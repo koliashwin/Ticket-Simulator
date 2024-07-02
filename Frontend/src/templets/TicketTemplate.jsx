@@ -1,6 +1,6 @@
 import React from 'react'
 import './templet_styles.css'
-const TicketTemplate = ({name, source, destination, cost}) => {
+const TicketTemplate = ({name, source, destination, cost, qr_code}) => {
   return (
     <div className='ticket'>
       <div className='ticket-header'>
@@ -13,7 +13,7 @@ const TicketTemplate = ({name, source, destination, cost}) => {
         <p><strong>Cost : </strong>Rs. {cost}/-</p>
       </div>
       <div className='ticket-qrcode'>
-        <img src="" alt="QR Code" className='qrcode-img' />
+        <img src={qr_code} alt="QR Code" className='qrcode-img' />
       </div>
     </div>
   )

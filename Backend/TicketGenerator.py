@@ -90,4 +90,5 @@ class TicketGenerator:
 
         img = qr.make_image(fill_color='black', back_color='white')
         img.save(filepath)
+        print("qr_code_file path : ", filepath)
         img.close()
