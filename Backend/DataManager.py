@@ -54,6 +54,25 @@ class DataManager:
             )
             '''
             self.execute_query(query)
+
+            query = '''
+            CREATE TABLE IF NOT EXISTS CARDS (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_name VARCHAR(255) NOT NULL,
+            user_contact VARCHAR(10) UNIQUE,
+            card_id INT UNIQUE,
+            type VARCHAR(50) NOT NULL,
+            created_on DATE DEFAULT (CURRENT_DATE),
+            validity DATE,
+            trips INT,
+            balance FLOAT,
+            from_station INT,
+            to_station INT,
+            FOREIGN KEY (from_station) REFERENCES Stations(id),
+            FOREIGN KEY (to_station) REFERENCES Stations(id)
+            )
+            '''
+            self.execute_query(query)
         finally:
             self.disconnect()
     
@@ -80,9 +99,10 @@ class DataManager:
         try:
             self.connect()
             if cols:
-                query = f"SELECT id, {', '.join(item for item in cols)} FROM {table_name}"
+                query = f"SELECT {', '.join(item for item in cols)} FROM {table_name}"
             else:
-                query = f"SELECT id FROM {table_name}"
+                query = f"SELECT * FROM {table_name}"
+            print("get_tbl_item qry : ", query)
             db_cursor = self.connection.cursor(dictionary=True)
             db_cursor.execute(query)
             stations = db_cursor.fetchall()

@@ -37,6 +37,27 @@ class TicketGenerator:
 
         return ticket_data, qr_code_filename
     
+    def generate_card(self, data):
+        card_id = random.randint(1000,9999)
+        card_type = data['type']
+
+        if card_type == 'trip':
+            cols = 'trips, from_station, to_station'
+            vals = '%s, %s, %s'
+            card_data = (card_id, data['user'], data['contact'], data['type'], data['trips'], data['from'], data['to'])
+        else:                   # for card_type = balacne
+            cols = 'balance'
+            vals = '%s'
+            card_data = (card_id, data['user'], data['contact'], data['type'], data['balance'])
+        insert_query = f'''
+        INSERT INTO CARDS (card_id, user_name, user_contact, type, {cols})
+        VALUES(%s, %s, %s, %s, {vals})
+        '''
+        print("insert query : ", insert_query)
+        self.db_manager.execute_query(insert_query, card_data)
+        return card_data
+
+    
     def ticket_cost(self, soruce_station, destination_station):
         """
         Calculate ticket cost based on the following logic:

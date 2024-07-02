@@ -1,5 +1,4 @@
 import cv2
-import time
 from DataManager import DataManager
 
 
@@ -43,14 +42,20 @@ class QrCodeScanner:
 
                 if check_in:
                     self.db_manager.update_ticket_status(qr_code_data[1:len(qr_code_data)-1],"check_in")
+                    print('Check-in complete')
+                    # return ('check_in complete')
                 else:
                     self.db_manager.update_ticket_status(qr_code_data[1:len(qr_code_data)-1],"check_out")
+                    print('Check-out complete')
+                    # return ('check_out complete')
                 cv2.waitKey(4000)
                 # return qr_code_data[1:len(qr_code_data)-1]
             # self.display_qr_result(qr_code_data, frame)
             
             
             if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+            if not (cv2.getWindowProperty("QR code Scanner", cv2.WND_PROP_VISIBLE)):
                 break
 
         self.cap.release()
